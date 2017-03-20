@@ -4,14 +4,13 @@ use App\book;
 
 class spiderOfSB
 {
-
+    protected $guzzle;
     const menuUrl = 'https://www.shanbay.com/wordbook/94129/';
     const baseUrl = "https://www.shanbay.com/";
 
-    public function __construct($database, $guzzle)
+    public function __construct($guzzle)
     {
         $this->guzzle = $guzzle;
-        $this->database = $database;
     }
 
     public function handle()
@@ -40,7 +39,7 @@ class spiderOfSB
         foreach ($menus as $k => $menu) {
             $listBaseUrl = self::baseUrl . $menu;
             $listUrl = $listBaseUrl . '?page=1';
-            $response = $this->guzzle->get($listUrl, ['timeout' => 60,'http_errors'=>false]);
+            $response = $this->guzzle->get($listUrl, ['timeout' => 60, 'http_errors' => false]);
             if ($response->getStatusCode() != 200) {
                 echo $listUrl . '链接异常' . "\r\n";
                 continue;
@@ -99,6 +98,6 @@ class spiderOfSB
 
 }
 
-$spiderOfSB = new spiderOfSB($database, $guzzle);
+$spiderOfSB = new spiderOfSB($guzzle);
 $spiderOfSB->handle();
 
