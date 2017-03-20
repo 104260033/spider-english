@@ -1,5 +1,5 @@
 <?php
-include "../bootstrap.php";
+include __DIR__ . "/../bootstrap.php";
 use App\book;
 
 class spiderOfSB
@@ -16,9 +16,11 @@ class spiderOfSB
 
     public function handle()
     {
+        $params = getopt('t:u:');
         $count = 0;
-        $title = '赖世雄美语入门';
-        $response = $this->guzzle->get(self::menuUrl, ['timeout' => 60]);
+        $title = isset($params['t']) ? $params['t'] : '赖世雄美语入门';
+        $menuUrl = isset($params['u']) ? $params['u'] : self::menuUrl;
+        $response = $this->guzzle->get($menuUrl, ['timeout' => 60]);
         if ($response->getStatusCode() != 200) {
             exit('error step one');
         }
