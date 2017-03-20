@@ -3,6 +3,7 @@
  * 导入自动载入
  */
 include __DIR__ . '/vendor/autoload.php';
+include __DIR__ . '/command.php';
 $database = include __DIR__ . '/config/database.php';
 
 use Illuminate\Database\Capsule\Manager as Capsule;
