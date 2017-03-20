@@ -1,0 +1,22 @@
+{
+    "name": "104260033/spiderEnglish",
+    "description": "抓取扇贝单词表+vocabulary+cambridge",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "104260033",
+            "email": "eric.fzy@gnail.com"
+        }
+    ],
+    "autoload": {
+            "psr-4": {
+                "App\\": "./"
+            }
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "illuminate/database": "^5.4",
+        "guzzlehttp/guzzle": "^6.2"
+    }
+}
