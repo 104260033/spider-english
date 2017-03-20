@@ -28,10 +28,11 @@ class spiderOfSB
         /**
          * 获取目录
          */
-        preg_match_all('/-name[\w\W]*?<a href="([\w\W]*?)">Les{2,}on/', $html, $menus);
+        preg_match_all('/-name[\w\W]*?<a href="([\w\W]*?)">([\w\W]*?)<\/a>/', $html, $menus);
         if (!isset($menus[1][0])) {
             exit('error step two\\r\\n');
         }
+        $lesson = $menus[2];
         $menus = $menus[1];
         /**
          * 获取列表链接
@@ -39,7 +40,7 @@ class spiderOfSB
         foreach ($menus as $k => $menu) {
             $listBaseUrl = self::baseUrl . $menu;
             $listUrl = $listBaseUrl . '?page=1';
-            $response = $this->guzzle->get($listUrl, ['timeout' => 60]);
+            $response = $this->guzzle->get($listUrl, ['timeout' => 60,'http_errors'=>false]);
             if ($response->getStatusCode() != 200) {
                 echo $listUrl . '链接异常' . "\r\n";
                 continue;
@@ -83,10 +84,10 @@ class spiderOfSB
             }
             foreach ($words as $wk => $word) {
                 $data = [
-                    'word'      => 1,
+                    'word'      => $word,
                     'title'     => $title,
-                    'lesson'    => ($k + 1),
-                    'translate' => 2,
+                    'lesson'    => $lesson[$k],
+                    'translate' => $translation[$wk],
                 ];
                 book::create($data);
                 $count++;//统计数量
