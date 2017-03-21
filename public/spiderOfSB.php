@@ -2,6 +2,10 @@
 include __DIR__ . "/../bootstrap.php";
 use App\book;
 
+/**
+ * 采集扇贝网的单词书，原始数据来源 ，执行顺序 最高等级
+ * Class spiderOfSB
+ */
 class spiderOfSB
 {
     protected $guzzle;
@@ -15,6 +19,7 @@ class spiderOfSB
 
     public function handle()
     {
+
         $params = getopt('t:u:');
         $count = 0;
         $title = isset($params['t']) ? $params['t'] : '赖世雄美语入门';

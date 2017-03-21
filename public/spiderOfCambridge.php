@@ -2,6 +2,10 @@
 include __DIR__ . "/../bootstrap.php";
 use App\book;
 
+/**
+ * 采集剑桥的音标 和 音频 还有 翻译  执行顺序 X
+ * Class spiderOfCambridge
+ */
 class spiderOfCambridge
 {
     protected $guzzle;

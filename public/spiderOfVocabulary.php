@@ -2,6 +2,10 @@
 include __DIR__ . "/../bootstrap.php";
 use App\book;
 
+/**
+ * 采集vocabulary 音频, 情景(超级重要)  执行顺序 X
+ * Class spiderOfVocabulary
+ */
 class spiderOfVocabulary
 {
     protected $guzzle;
