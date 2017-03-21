@@ -21,8 +21,9 @@ class spiderOfPhoneticOfSB
         $count = 1;
         $params = getopt('t:u:');
         $title = isset($params['t']) ? $params['t'] : '赖世雄美语入门';
-        $items = book::where('title', $title)
-            ->orWhere('phoneticOfSbForUk', '')
+//        $items = book::where('title', $title)
+//            ->orWhere('phoneticOfSbForUk', '')
+        $items = book::orWhere('phoneticOfSbForUk', '')
             ->orWhere('phoneticOfSbForUs', '')
             ->orWhere('translateOfSb', '')
             ->get();

@@ -89,8 +89,8 @@ class spiderOfCambridge
                  */
                 $phoneticOfUs =
                     isset($phonetic[1][1]) ?
-                    preg_replace('/<span[\w\W]*?>/', '^', $phonetic[1][1]) :
-                    $phoneticOfUk;
+                        preg_replace('/<span[\w\W]*?>/', '^', $phonetic[1][1]) :
+                        $phoneticOfUk;
             }
 
             /**
