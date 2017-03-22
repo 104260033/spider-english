@@ -22,6 +22,7 @@ class spiderOfCambridge
         $params = getopt('t:u:');
         $title = isset($params['t']) ? $params['t'] : '扇贝循环单词书·四级核心词汇';
         $items = book::where('title', $title)->get();
+//        $items = book::orderBy('id', 'desc')->get();//查询全量
         $total = $items->count();
         foreach ($items as $k => $item) {
 
@@ -61,7 +62,8 @@ class spiderOfCambridge
 //            }
 //            $html = $response->getBody()->getContents();
 
-            $html = cUrl($wordUrl);
+            $curl = cUrl($wordUrl);
+            $html = $curl['output'];
             /**
              * 获取word用于比对和查询的是否一致 vocabulary 有这个问题
              */
@@ -119,7 +121,9 @@ class spiderOfCambridge
                 /**
                  * 获取音频
                  */
-                $audio = cUrl($autoUrl);
+                $curl = cUrl($wordUrl);
+                $audio = $curl['output'];
+                $curlInfo = $curl['info'];
                 /**
                  * 保存音频
                  */

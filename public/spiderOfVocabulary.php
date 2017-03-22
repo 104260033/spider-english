@@ -62,7 +62,8 @@ class spiderOfVocabulary
 //            }
 //            $html = $response->getBody()->getContents();
 
-            $html = cUrl($wordUrl);
+            $curl = cUrl($wordUrl);
+            $html = $curl['output'];
             /**
              * 获取word用于比对和查询的是否一致 vocabulary 有这个问题
              */
@@ -107,7 +108,8 @@ class spiderOfVocabulary
                 /**
                  * 获取音频
                  */
-                $audio = cUrl($autoUrl);
+                $curl = cUrl($wordUrl);
+                $audio = $curl['output'];
                 /**
                  * 保存音频
                  */

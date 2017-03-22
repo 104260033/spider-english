@@ -29,7 +29,11 @@ class spiderOfPhoneticOfSB
             ->get();
         $total = $items->count();
         foreach ($items as $k => $item) {
-            sleep(1);
+            if (($k % 20) == 1) {
+                echo '暂停两秒';
+                sleep(2);
+            }
+//            sleep(1);
             echo "\r\n" . $count . '/' . $total . "\r\n";
             $count++;
 

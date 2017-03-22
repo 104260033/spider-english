@@ -10,7 +10,7 @@ use App\book;
  */
 class clearUpValidAudio
 {
-    protected $min = 6;//文件最小值
+    protected $min = 2;//文件最小值
     protected $directors = [
         __DIR__ . '/cambridge/',
         __DIR__ . '/vocabulary/',
@@ -18,14 +18,17 @@ class clearUpValidAudio
 
     public function handle()
     {
+        $deleteCount = 0;//清理数量
+        $total = 0;//文件总量
+        $excuteCount = 0;//已执行总量
+        $invalidCount = 0;//失败数量
+        $invilids = [];
         foreach ($this->directors as $director) {
 
             $files = getDirFiles($director);//获取目录
-            $deleteCount = 0;//清理数量
-            $total = count($files);
-            $invalidCount = 0;//失败数量
-            $invilids = [];
+            $total += count($files);
             foreach ($files as $k => $file) {
+                $excuteCount++;
 
                 $directorFile = $director . trim($file);//文件全路径
                 if (!file_exists($directorFile)) {
@@ -49,7 +52,8 @@ class clearUpValidAudio
 
             }
         }
-        echo "\r\n 已执行到" . $k . ' / 总共查找到:' . $total . " / 不存在的文件个数:{$invalidCount} / 清理的文件个数{$deleteCount} \r\n";
+        $deleteCount = count($invilids);
+        echo "\r\n 已执行到" . $excuteCount . ' / 总共查找到:' . $total . " / 不存在的文件个数:{$invalidCount} / 清理的文件个数{$deleteCount} \r\n";
         echo "\r\n以下是清理列表\r\n";
         print_r($invilids);
         echo "\r\n";
