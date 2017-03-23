@@ -22,7 +22,7 @@ class spiderOfVocabulary
         $count = 0;//统计总量用
         $params = getopt('t:u:');
         $title = isset($params['t']) ? $params['t'] : '扇贝循环单词书·四级核心词汇';
-        $items = book::where('title', $title)->get();
+        $items = book::orderBy('id','desc')->get();
         $total = $items->count();
         foreach ($items as $k => $item) {
 
@@ -108,7 +108,7 @@ class spiderOfVocabulary
                 /**
                  * 获取音频
                  */
-                $curl = cUrl($wordUrl);
+                $curl = cUrl($autoUrl);
                 $audio = $curl['output'];
                 /**
                  * 保存音频

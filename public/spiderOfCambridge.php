@@ -121,9 +121,8 @@ class spiderOfCambridge
                 /**
                  * 获取音频
                  */
-                $curl = cUrl($wordUrl);
+                $curl = cUrl($autoUrl);
                 $audio = $curl['output'];
-                $curlInfo = $curl['info'];
                 /**
                  * 保存音频
                  */

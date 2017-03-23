@@ -29,10 +29,11 @@ class spiderSelenium
         $driver = RemoteWebDriver::create($host, $desired_capabilities);
 
 
-        $driver->get('https://www.flipkart.com/mens-clothing/pr?sid=2oq,s9b&otracker=categorytree');
-        $html = $driver->getPageSource();
-        preg_match_all('/id="pagination"([\w\W]*?)<\/ul>[\w\W]*?<\/div>[\w\W]*?<\/div>/', $html, $content);
-        var_dump($content);
+        $driver->get('https://www.shanbay.com/');
+//        $html = $driver->getPageSource();
+//        preg_match_all('/id="pagination"([\w\W]*?)<\/ul>[\w\W]*?<\/div>[\w\W]*?<\/div>/', $html, $content);
+//        var_dump($content);
+        $driver->findElement(WebDriverBy::partialLinkText('登录'))->click();
         $driver->quit();
     }
 }
